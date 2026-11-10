@@ -1,0 +1,16 @@
+# Entorno virtual
+venv/
+
+# Archivos temporales de Python
+__pycache__/
+*.py[cod]
+
+# Variables privadas
+.env
+
+# Editores
+.idea/
+.vscode/
+
+# Base de datos SQLite
+# db.sqlite3
