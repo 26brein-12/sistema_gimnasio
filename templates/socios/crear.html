@@ -1,0 +1,58 @@
+
+{% extends 'gimnasio/base.html' %}
+
+{% block title %}Registrar Socio{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="card shadow">
+        <div class="card-header bg-dark text-white">
+            <h4>Registrar Nuevo Socio</h4>
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">Documento</label>
+                    <input type="text" name="documento" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Nombres</label>
+                    <input type="text" name="nombres" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Apellidos</label>
+                    <input type="text" name="apellidos" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Teléfono</label>
+                    <input type="text" name="telefono" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Correo electrónico</label>
+                    <input type="email" name="correo" class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    Registrar Socio
+                </button>
+
+                <a href="{% url 'socios:lista_socios' %}" class="btn btn-secondary">
+                    Cancelar
+                </a>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

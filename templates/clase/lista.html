@@ -1,0 +1,53 @@
+{% extends 'gimnasio/base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2>Gestión de Clases</h2>
+
+    <a href="{% url 'clase:crear_clase' %}" class="btn btn-primary mb-3">
+        Registrar nueva clase
+    </a>
+
+    <table class="table table-bordered table-striped">
+
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Horario</th>
+                <th>Cupo</th>
+                <th>Entrenador</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for clase in clases %}
+            <tr>
+                <td>{{ clase.id_clase }}</td>
+                <td>{{ clase.nombre }}</td>
+                <td>{{ clase.horario }}</td>
+                <td>{{ clase.cupo }}</td>
+                <td>{{ clase.entrenador }}</td>
+                <td>
+                    <a href="{% url 'clase:editar_clase' clase.id_clase %}"
+                       class="btn btn-warning btn-sm">Editar</a>
+
+                    <a href="{% url 'clase:eliminar_clase' clase.id_clase %}"
+                       class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No hay clases registradas.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

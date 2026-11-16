@@ -1,0 +1,62 @@
+
+{% extends 'gimnasio/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h2 class="mb-4">Registrar entrenador</h2>
+
+    <div class="card shadow">
+        <div class="card-body">
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">Documento</label>
+                    <input type="text" name="documento"
+                           class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Nombre completo</label>
+                    <input type="text" name="nombre"
+                           class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Teléfono</label>
+                    <input type="text" name="telefono"
+                           class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Especialidad</label>
+                    <input type="text" name="especialidad"
+                           class="form-control" required>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input type="checkbox" name="activo"
+                           class="form-check-input" checked>
+                    <label class="form-check-label">
+                        Entrenador activo
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    Guardar entrenador
+                </button>
+
+                <a href="{% url 'entrenador:lista_entrenadores' %}"
+                   class="btn btn-secondary">
+                    Cancelar
+                </a>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

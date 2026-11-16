@@ -1,0 +1,51 @@
+{% extends 'gimnasio/base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2>Editar inscripción</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label class="form-label">Socio</label>
+
+            <select name="socio" class="form-select" required>
+                {% for socio in socios %}
+                <option value="{{ socio.id_socio }}"
+                    {% if socio.id_socio == inscripcion.socio_id %}selected{% endif %}>
+                    {{ socio.nombres }} {{ socio.apellidos }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Clase</label>
+
+            <select name="clase" class="form-select" required>
+                {% for clase in clases %}
+                <option value="{{ clase.id_clase }}"
+                    {% if clase.id_clase == inscripcion.clase_id %}selected{% endif %}>
+                    {{ clase.nombre }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Guardar cambios
+        </button>
+
+        <a href="{% url 'inscripcion:lista_inscripciones' %}"
+           class="btn btn-secondary">
+            Cancelar
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

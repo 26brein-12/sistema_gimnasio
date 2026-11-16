@@ -1,0 +1,55 @@
+{% extends 'gimnasio/base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2>Registrar nueva inscripción</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label class="form-label">Seleccionar socio</label>
+
+            <select name="socio" class="form-select" required>
+                <option value="">Seleccione un socio</option>
+
+                {% for socio in socios %}
+                <option value="{{ socio.id_socio }}">
+                    {{ socio.nombres }} {{ socio.apellidos }}
+                </option>
+                {% endfor %}
+
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Seleccionar clase</label>
+
+            <select name="clase" class="form-select" required>
+                <option value="">Seleccione una clase</option>
+
+                {% for clase in clases %}
+                <option value="{{ clase.id_clase }}">
+                    {{ clase.nombre }}
+                </option>
+                {% endfor %}
+
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Guardar inscripción
+        </button>
+
+        <a href="{% url 'inscripcion:lista_inscripciones' %}"
+           class="btn btn-secondary">
+            Cancelar
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

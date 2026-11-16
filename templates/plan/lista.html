@@ -1,0 +1,78 @@
+
+{% extends 'gimnasio/base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Lista de planes</h2>
+
+        <a href="{% url 'plan:crear_plan' %}" class="btn btn-success">
+            + Registrar plan
+        </a>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Duración</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for plan in planes %}
+                        <tr>
+                            <td>{{ plan.id_plan }}</td>
+                            <td>{{ plan.nombre_plan }}</td>
+                            <td>{{ plan.descripcion }}</td>
+                            <td>${{ plan.precio }}</td>
+                            <td>{{ plan.duracion_dias }} días</td>
+                            <td>
+                                {% if plan.activo %}
+                                    <span class="badge bg-success">Activo</span>
+                                {% else %}
+                                    <span class="badge bg-danger">Inactivo</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'plan:editar_plan' plan.id_plan %}"
+                                   class="btn btn-warning btn-sm">
+                                    Editar
+                                </a>
+
+                                <a href="{% url 'plan:eliminar_plan' plan.id_plan %}"
+                                   class="btn btn-danger btn-sm">
+                                    Eliminar
+                                </a>
+                            </td>
+                        </tr>
+
+                        {% empty %}
+                        <tr>
+                            <td colspan="7" class="text-center">
+                                No hay planes registrados.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+

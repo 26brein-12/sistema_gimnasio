@@ -1,0 +1,68 @@
+
+{% extends 'gimnasio/base.html' %}
+
+{% block title %}Registrar Membresía{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-body">
+
+            <h2 class="mb-4">Registrar Nueva Membresía</h2>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">Seleccionar Socio</label>
+                    <select name="socio" class="form-select" required>
+                        <option value="">Seleccione un socio</option>
+                        {% for socio in socios %}
+                            <option value="{{ socio.id_socio }}">
+                                {{ socio.nombres }} {{ socio.apellidos }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Seleccionar Plan</label>
+                    <select name="plan" class="form-select" required>
+                        <option value="">Seleccione un plan</option>
+                        {% for plan in planes %}
+                            <option value="{{ plan.id_plan }}">
+                                {{ plan.nombre_plan }} - ${{ plan.precio }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Fecha de inicio</label>
+                    <input type="date" name="fecha_inicio"
+                           class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Fecha de finalización</label>
+                    <input type="date" name="fecha_fin"
+                           class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    Registrar Membresía
+                </button>
+
+                <a href="{% url 'membresias:lista_membresias' %}"
+                   class="btn btn-secondary">
+                    Cancelar
+                </a>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

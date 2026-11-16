@@ -1,0 +1,41 @@
+
+{% extends 'gimnasio/base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+        <div class="card-header bg-danger text-white">
+            <h4>Eliminar plan</h4>
+        </div>
+
+        <div class="card-body">
+
+            <p>¿Estás seguro de que deseas eliminar este plan?</p>
+
+            <h5>{{ plan.nombre_plan }}</h5>
+
+            <p><strong>Descripción:</strong> {{ plan.descripcion }}</p>
+            <p><strong>Precio:</strong> ${{ plan.precio }}</p>
+            <p><strong>Duración:</strong> {{ plan.duracion_dias }} días</p>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <button type="submit" class="btn btn-danger">
+                    Sí, eliminar
+                </button>
+
+                <a href="{% url 'plan:lista_planes' %}"
+                   class="btn btn-secondary">
+                    Cancelar
+                </a>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'gimnasio/base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2>Gestión de Inscripciones</h2>
+
+    <a href="{% url 'inscripcion:crear_inscripcion' %}"
+       class="btn btn-primary mb-3">
+        Registrar inscripción
+    </a>
+
+    <table class="table table-bordered table-striped">
+
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Socio</th>
+                <th>Clase</th>
+                <th>Fecha de inscripción</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for inscripcion in inscripciones %}
+            <tr>
+                <td>{{ inscripcion.id_inscripcion }}</td>
+                <td>{{ inscripcion.socio }}</td>
+                <td>{{ inscripcion.clase }}</td>
+                <td>{{ inscripcion.fecha_inscripcion }}</td>
+                <td>
+                    <td>
+                        <a href="{% url 'inscripcion:editar_inscripcion' inscripcion.id_inscripcion %}"
+                           class="btn btn-warning btn-sm">
+                            Editar
+                        </a>
+                    
+                        <a href="{% url 'inscripcion:eliminar_inscripcion' inscripcion.id_inscripcion %}"
+                           class="btn btn-danger btn-sm">
+                            Eliminar
+                        </a>
+                    </a>
+                </td>
+            </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan="5">No hay inscripciones registradas.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

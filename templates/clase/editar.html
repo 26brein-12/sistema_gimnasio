@@ -1,0 +1,56 @@
+{% extends 'gimnasio/base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2>Editar clase</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label class="form-label">Nombre de la clase</label>
+            <input type="text" name="nombre" class="form-control"
+                   value="{{ clase.nombre }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Horario</label>
+            <input type="datetime-local" name="horario" class="form-control"
+                   value="{{ clase.horario|date:'Y-m-d\\TH:i' }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Cupo disponible</label>
+            <input type="number" name="cupo" class="form-control"
+                   value="{{ clase.cupo }}" min="1" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Entrenador</label>
+            <select name="entrenador" class="form-select" required>
+
+                {% for entrenador in entrenadores %}
+                <option value="{{ entrenador.id_entrenador }}"
+                    {% if entrenador.id_entrenador == clase.entrenador_id %}selected{% endif %}>
+                    {{ entrenador.nombre }}
+                </option>
+                {% endfor %}
+
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Guardar cambios
+        </button>
+
+        <a href="{% url 'clase:lista_clases' %}" class="btn btn-secondary">
+            Cancelar
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

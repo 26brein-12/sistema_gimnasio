@@ -1,0 +1,70 @@
+
+{% extends 'gimnasio/base.html' %}
+
+{% block title %}Editar Membresía{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-body">
+
+            <h2 class="mb-4">Editar Membresía</h2>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">Socio</label>
+                    <select name="socio" class="form-select" required>
+                        {% for socio in socios %}
+                            <option value="{{ socio.id_socio }}"
+                                {% if socio.id_socio == membresia.socio_id %}selected{% endif %}>
+                                {{ socio.nombres }} {{ socio.apellidos }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Plan</label>
+                    <select name="plan" class="form-select" required>
+                        {% for plan in planes %}
+                            <option value="{{ plan.id_plan }}"
+                                {% if plan.id_plan == membresia.plan_id %}selected{% endif %}>
+                                {{ plan.nombre_plan }} - ${{ plan.precio }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Fecha de inicio</label>
+                    <input type="date" name="fecha_inicio"
+                           class="form-control"
+                           value="{{ membresia.fecha_inicio|date:'Y-m-d' }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Fecha de finalización</label>
+                    <input type="date" name="fecha_fin"
+                           class="form-control"
+                           value="{{ membresia.fecha_fin|date:'Y-m-d' }}" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    Guardar Cambios
+                </button>
+
+                <a href="{% url 'membresias:lista_membresias' %}"
+                   class="btn btn-secondary">
+                    Cancelar
+                </a>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

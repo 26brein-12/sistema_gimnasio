@@ -1,0 +1,98 @@
+
+{% extends 'gimnasio/base.html' %}
+
+{% block title %}Inicio | Sistema Gimnasio{% endblock %}
+
+{% block content %}
+
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm">
+    <div class="container-fluid py-3">
+        <h1 class="display-5 fw-bold">Bienvenido al Gimnasio</h1>
+        <p class="col-md-8 fs-5">
+            Sistema de gestión para administrar socios, planes,
+            membresías, entrenadores e inscripciones.
+        </p>
+
+        <a href="{% url 'socios:lista_socios' %}" class="btn btn-primary btn-lg">
+            Comenzar
+        </a>
+    </div>
+</div>
+
+<h2 class="mb-4">Panel principal</h2>
+
+<div class="row g-4">
+
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h5 class="card-title">Socios</h5>
+                <p class="card-text">Gestionar los socios registrados.</p>
+                <a href="{% url 'socios:lista_socios' %}" class="btn btn-primary">
+                    Ver socios
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h5 class="card-title">Membresías</h5>
+                <p class="card-text">Administrar las membresías.</p>
+                <a href="{% url 'membresias:lista_membresias' %}" class="btn btn-success">
+                    Ver membresías
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h5 class="card-title">Planes</h5>
+                <p class="card-text">Consultar los planes disponibles.</p>
+                <a href="{% url 'plan:lista_planes' %}" class="btn btn-primary">Ver planes</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h5 class="card-title">Entrenadores</h5>
+                <p class="card-text">Administrar los entrenadores.</p>
+                <a href="{% url 'entrenador:lista_entrenadores' %}" class="btn btn-primary">
+                    Ver entrenadores
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h5 class="card-title">Clases</h5>
+                <p class="card-text">Consultar las clases disponibles.</p>
+                <a href="{% url 'clase:lista_clases' %}" class="btn btn-primary">
+                    Ver clases
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h5 class="card-title">Inscripciones</h5>
+                <p class="card-text">Gestionar las inscripciones.</p>
+                <a href="{% url 'inscripcion:lista_inscripciones' %}" class="btn btn-primary">
+                    Ver inscripciones
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

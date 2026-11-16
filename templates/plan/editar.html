@@ -1,0 +1,55 @@
+
+{% extends 'gimnasio/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h2 class="mb-4">Editar plan</h2>
+
+    <div class="card shadow">
+        <div class="card-body">
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <label class="form-label">Nombre del plan</label>
+                <input type="text" name="nombre_plan"
+                       class="form-control mb-3"
+                       value="{{ plan.nombre_plan }}" required>
+
+                <label class="form-label">Descripción</label>
+                <textarea name="descripcion"
+                          class="form-control mb-3"
+                          rows="3" required>{{ plan.descripcion }}</textarea>
+
+                <label class="form-label">Precio</label>
+                <input type="number" name="precio"
+                       class="form-control mb-3"
+                       step="0.01" min="0"
+                       value="{{ plan.precio }}" required>
+
+                <label class="form-label">Duración en días</label>
+                <input type="number" name="duracion_dias"
+                       class="form-control mb-3"
+                       min="1" value="{{ plan.duracion_dias }}" required>
+
+                <div class="form-check mb-3">
+                    <input type="checkbox" name="activo"
+                           class="form-check-input"
+                           {% if plan.activo %}checked{% endif %}>
+                    <label class="form-check-label">Plan activo</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    Actualizar plan
+                </button>
+
+                <a href="{% url 'plan:lista_planes' %}"
+                   class="btn btn-secondary">Cancelar</a>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
