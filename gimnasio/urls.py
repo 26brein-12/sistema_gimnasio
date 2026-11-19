@@ -5,10 +5,10 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.inicio, name='inicio'),
-    path('socios/', include('socios.urls')),
-    path('membresias/', include('membresias.urls')),
-    path('planes/', include('plan.urls')),
-    path('entrenadores/', include('entrenador.urls')),
-    path('clases/', include('clase.urls')),
-    path('inscripciones/', include('inscripcion.urls')),
+    path('socios/', include('apps.socios.urls')),
+    path('membresias/', include('apps.membresias.urls')),
+    path('planes/', include('apps.plan.urls')),
+    path('entrenadores/', include('apps.entrenador.urls')),
+    path('clases/', include('apps.clase.urls')),
+    path('inscripciones/', include('apps.inscripcion.urls')),
 ]

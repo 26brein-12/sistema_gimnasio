@@ -1,10 +1,7 @@
-from django.shortcuts import render
-
-
 from django.shortcuts import render, redirect
 from .models import Membresia
-from socios.models import Socio
-from plan.models import Plan
+from apps.socios.models import Socio
+from apps.plan.models import Plan
 
 
 def lista_membresias(request):

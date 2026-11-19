@@ -1,6 +1,6 @@
 from django.db import models
-from socios.models import Socio
-from clase.models import Clase
+from apps.socios.models import Socio
+from apps.clase.models import Clase
 
 
 class Inscripcion(models.Model):

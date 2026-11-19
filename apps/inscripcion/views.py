@@ -1,8 +1,8 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Inscripcion
-from socios.models import Socio
-from clase.models import Clase
+from apps.socios.models import Socio
+from apps.clase.models import Clase
 
 def lista_inscripciones(request):
     inscripciones = Inscripcion.objects.all()

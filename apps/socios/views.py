@@ -1,13 +1,6 @@
-
-from django.shortcuts import render
-from .models import Socio
-
-def lista_socios(request):
-    socios = Socio.objects.all()
-    return render(request, 'socios/lista.html', {'socios': socios})
-
 from django.shortcuts import render, redirect
 from .models import Socio
+
 
 def lista_socios(request):
     socios = Socio.objects.all()
@@ -34,6 +27,7 @@ def crear_socio(request):
 
     return render(request, 'socios/crear.html')
 
+
 def editar_socio(request, id_socio):
     socio = Socio.objects.get(id_socio=id_socio)
 
@@ -45,10 +39,10 @@ def editar_socio(request, id_socio):
         socio.correo = request.POST.get('correo')
 
         socio.save()
-
         return redirect('socios:lista_socios')
 
     return render(request, 'socios/editar.html', {'socio': socio})
+
 
 def eliminar_socio(request, id_socio):
     socio = Socio.objects.get(id_socio=id_socio)
@@ -58,5 +52,3 @@ def eliminar_socio(request, id_socio):
         return redirect('socios:lista_socios')
 
     return render(request, 'socios/eliminar.html', {'socio': socio})
-
-

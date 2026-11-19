@@ -1,7 +1,7 @@
 
 from django.db import models
-from socios.models import Socio
-from plan.models import Plan
+from apps.socios.models import Socio
+from apps.plan.models import Plan
 
 
 class Membresia(models.Model):

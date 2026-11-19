@@ -1,5 +1,5 @@
 from django.db import models
-from entrenador.models import entrenador
+from apps.entrenador.models import entrenador
 
 
 class Clase(models.Model):

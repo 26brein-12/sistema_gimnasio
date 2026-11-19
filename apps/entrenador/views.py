@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import entrenador
 
@@ -42,21 +41,6 @@ def editar_entrenador(request, id_entrenador):
     return render(request, 'entrenador/editar.html', {
         'entrenador': profesor
     })
-
-
-def eliminar_entrenador(request, id_entrenador):
-    profesor = get_object_or_404(
-        entrenador, id_entrenador=id_entrenador
-    )
-
-    if request.method == 'POST':
-        profesor.delete()
-        return redirect('entrenador:lista_entrenadores')
-
-    return render(request, 'entrenador/eliminar.html', {
-        'entrenador': profesor
-    })
-
 
 
 def eliminar_entrenador(request, id_entrenador):

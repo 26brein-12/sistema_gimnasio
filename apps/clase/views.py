@@ -1,9 +1,6 @@
-from django.shortcuts import render
-
-
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Clase
-from entrenador.models import entrenador
+from apps.entrenador.models import entrenador
 
 
 def lista_clases(request):
